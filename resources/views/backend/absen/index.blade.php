@@ -1,1 +1,1 @@
-ini absen
+@extends('layouts.app')
