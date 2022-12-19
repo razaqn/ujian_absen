@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // import backend contoller
 use App\Http\Controllers\Backend\UserController as BackendUserController;
+use App\Http\Controllers\Backend\AbsenController;
 
 // user
 Route::get('/backend/manage/user', [BackendUserController::class, 'index'])->name("backend.manage.user");
@@ -16,3 +17,6 @@ Route::delete('/backend/destroy/process/user/{id?}', [BackendUserController::cla
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/backend/manage/absen', [AbsenController::class, 'index'])->name("backend.manage.absensi");
