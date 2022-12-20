@@ -45,10 +45,10 @@ class UserController extends Controller
 
     public function edit($id = null){
         if ($id == null){
-            return redirect()->route('backend.manage.services.c')->with('error', "the ID is empty");
+            return redirect()->route('backend.manage.user')->with('error', "the ID is empty");
         } else{
-            $item = ServicesCategories::find($id);
-            return view('backend.services.edit_c', compact('item'));
+            $item = User::find($id);
+            return view('backend.user.edit', compact('item'));
         }
     }
 
@@ -56,15 +56,17 @@ class UserController extends Controller
     {
         request()->validate([
             'name'  => 'required',
-            'slug'  => 'required'
+            'email'  => 'required',
+            'password' => 'required'
         ]);
 
-        ServicesCategories::where('id', $request->id)->update(([
+        User::where('id', $request->id)->update(([
             'name'  => $request->name,
-            'slug'  => $request->slug
+            'email'  => $request->email,
+            'password' => Hash::make($request->password)
         ]));
 
-        return redirect()->route('backend.manage.services.c')->with('success', 'Item Edited Successfully');
+        return redirect()->route('backend.manage.user')->with('success', 'Item Edited Successfully');
     }
 
     public function destroy($id){
