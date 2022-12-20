@@ -26,7 +26,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Contact</div>
+                <div class="card-header">Absensi</div>
 
                 <div class="card-body">
                     <div class="table-responsive">
@@ -43,7 +43,7 @@
                                     <td>{{ $value->name }}</td>
                                     <td>{{ $value->waktu_absen }}</td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt pe-1"></i> Edit</a>
+                                        <a href="{{ route('backend.edit.absensi', $value->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt pe-1"></i> Edit</a>
                                         <form action="" method="post" class="d-inline">
                                             @csrf
                                             @method('DELETE')
