@@ -62,9 +62,12 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>
-                                <a href="{{ route('backend.edit.user', $item->id) }}" class="btn btn-sm btn-success">
-                                    <i class="fa-solid fa-pencil"></i> Edit
-                                </a>
+                                @if (Auth::User()->name == $item->name)
+                                    <a href="{{ route('backend.edit.user', $item->id) }}" class="btn btn-sm btn-success">
+                                        <i class="fa-solid fa-pencil"></i> Edit
+                                    </a>
+                                
+                                
 
                                 <form action="{{ route('backend.destroy.process.user', $item->id) }}" method="post" class="d-inline" >
                                     @csrf
@@ -73,6 +76,7 @@
                                         <i class="fas fa-trash-alt pe-1"></i> Destroy
                                     </button>
                                 </form>
+                                @endif
                             </td>
                           </tr>
                         @endforeach
