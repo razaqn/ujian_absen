@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 // import backend contoller
 use App\Http\Controllers\Backend\UserController as BackendUserController;
-use App\Http\Controllers\Backend\AbsenController;
+use App\Http\Controllers\Backend\AbsenController as BackendAbsenController;
 use App\Http\Controllers\Backend\MapelController as BackendMapelController;
+use App\Http\Controllers\Backend\SiswaController as BackendSiswaController;
 
 // user
 Route::get('/backend/manage/user', [BackendUserController::class, 'index'])->name("backend.manage.user");
@@ -29,4 +30,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/backend/manage/absen', [AbsenController::class, 'index'])->name("backend.manage.absensi");
+Route::get('/backend/manage/absen', [BackendAbsenController::class, 'index'])->name("backend.manage.absensi");
+
+Route::get('/backend/manage/siswa', [BackendSiswaController::class, 'index'])->name("backend.manage.siswa");
+Route::get('/backend/create/siswa', [BackendSiswaController::class, 'create'])->name("backend.create.siswa");
+Route::post('/backend/create_process/siswa', [BackendSiswaController::class, 'create_process'])->name("backend.create.process.siswa");
+Route::get('/backend/edit/siswa/{id?}', [BackendSiswaController::class, 'edit'])->name("backend.edit.siswa");
+Route::post('/backend/edit_process/siswa', [BackendSiswaController::class, 'edit_process'])->name("backend.edit.process.siswa");
