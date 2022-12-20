@@ -38,7 +38,7 @@
                                         <label for="name" class="form-label">
                                             Name <span class="text-danger">*</span>
                                         </label>
-                                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Name" class="form-control @error('name') is-invalid @enderror">
+                                        <input type="text" name="name" value="{{ $mapel->name }}" placeholder="Name" class="form-control @error('name') is-invalid @enderror">
                                         @error('name')
                                             <small class="text-danger">{!! $message !!}</small>
                                         @enderror
@@ -47,7 +47,7 @@
                                         <label for="slug" class="form-label">
                                             Slug <span class="text-danger">*</span>
                                         </label>
-                                        <input type="text" name="slug" value="{{ old('slug') }}" placeholder="Slug" class="form-control @error('slug') is-invalid @enderror">
+                                        <input type="text" name="slug" value="{{ $mapel->slug }}" placeholder="Slug" class="form-control @error('slug') is-invalid @enderror">
                                         @error('slug')
                                             <small class="text-danger">{!! $message !!}</small>
                                         @enderror
