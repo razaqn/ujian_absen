@@ -26,10 +26,28 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <div class="mb-2 @error('slug') text-danger fw-bold @enderror">Slug:</div>
-                                    <input type="text" name="slug" value="{{ old('slug') }}" placeholder="Slug" 
-                                    class="form-control @error('slug') text-danger is-invalid @enderror">
-                                    @error('slug')
+                                    <div class="mb-2 @error('email') text-danger fw-bold @enderror">Email:</div>
+                                    <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" 
+                                    class="form-control @error('email') text-danger is-invalid @enderror">
+                                    @error('email')
+                                        <small class="text-danger">{!! $message !!}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="mb-2 @error('password') text-danger fw-bold @enderror">Password:</div>
+                                    <input type="password" name="password" value="{{ old('password') }}" placeholder="Password" 
+                                    class="form-control @error('password') text-danger is-invalid @enderror">
+                                    @error('password')
+                                        <small class="text-danger">{!! $message !!}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="mb-2 @error('password') text-danger fw-bold @enderror">Confirm Password:</div>
+                                    <input type="password" name="password_confirmation" value="{{ old('password') }}" placeholder="Password" 
+                                    class="form-control @error('password') text-danger is-invalid @enderror">
+                                    @error('password')
                                         <small class="text-danger">{!! $message !!}</small>
                                     @enderror
                                 </div>

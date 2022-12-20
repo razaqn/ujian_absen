@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -16,7 +17,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::orderBy('id',)->get();
+        $users = User::where('is_admin', null)->get();
         return view('backend.user.index', compact('users'));
     }
 
@@ -27,26 +28,19 @@ class UserController extends Controller
 
     public function create_process(Request $request)
     {
-        $rule = [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
-        ];  
+        request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
 
-        $message =[
-            'nama.required' => 'The Field <strong>name</strong> is required!',
-            'email.required' => 'The Field <strong>email</strong> is required!',
-            'password.required' => 'The Field <strong>password</strong> is required!',
-        ];  
-
-        $validator = Validator::make($request->all(), $rule, $message);
-
-        if ($validator->fails()) {
-            return redirect()->route('backend.create.user')->withErrors($validator)->withInput();
-        } else {
-            ServicesCategories::create($request->all());
-            return redirect()->route('backend.create.user')->with('success', "The Category <strong>{$request->name}</strong> created successfully");
-        }
+        User::create([
+            'name'  => $request->name,
+            'email'  => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        
+        return redirect()->route('backend.manage.user')->with('success', "The Category <strong>{$request->name}</strong> created successfully");
     }
 
     public function edit($id = null){
