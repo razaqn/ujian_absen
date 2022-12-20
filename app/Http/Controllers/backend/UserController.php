@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::where('is_admin', null)->get();
+        $users = User::get();
         return view('backend.user.index', compact('users'));
     }
 
