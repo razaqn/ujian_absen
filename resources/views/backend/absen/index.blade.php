@@ -43,7 +43,6 @@
                                     <td>{{ $value->name }}</td>
                                     <td>{{ $value->waktu_absen }}</td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-primary"><i class="fas fa-search pe-1"></i> Show</a>
                                         <a href="" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt pe-1"></i> Edit</a>
                                         <form action="" method="post" class="d-inline">
                                             @csrf
