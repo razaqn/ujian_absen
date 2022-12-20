@@ -13,16 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('absensi', function (Blueprint $table) {
+        Schema::create('daftar_absen', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mapel_id')->default(0);
-            $table->string('name');
-            $table->time('waktu_absen');
+            $table->unsignedBigInteger('absen_id')->default(0);
+            $table->unsignedBigInteger('siswa_id')->default(0);
+            $table->boolean('hadir')->default(0);
             $table->timestamps();
 
-            $table->foreign('mapel_id')
+            $table->foreign('absen_id')
                         ->references('id')
-                        ->on('mapels')
+                        ->on('absensi')
+                        ->onDelete('cascade');
+
+        $table->foreign('siswa_id')
+                        ->references('id')
+                        ->on('siswa')
                         ->onDelete('cascade');
         });
     }
@@ -34,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('absensi');
+        Schema::dropIfExists('daftar_absen');
     }
 };

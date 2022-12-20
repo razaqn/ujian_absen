@@ -13,17 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('absensi', function (Blueprint $table) {
+        Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mapel_id')->default(0);
             $table->string('name');
-            $table->time('waktu_absen');
             $table->timestamps();
-
-            $table->foreign('mapel_id')
-                        ->references('id')
-                        ->on('mapels')
-                        ->onDelete('cascade');
         });
     }
 
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('absensi');
+        Schema::dropIfExists('siswa');
     }
 };
