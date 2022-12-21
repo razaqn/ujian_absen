@@ -15,6 +15,7 @@ class Absensi extends Model
     protected $fillable = [
         'mapel_id',
         'name',
+        'tanggal',
         'waktu_absen',
     ];
 

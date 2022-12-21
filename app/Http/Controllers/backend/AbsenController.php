@@ -24,15 +24,18 @@ class AbsenController extends Controller
     {
         $daftar = DaftarAbsen::Where('absen_id', $id)->get();
         $arrays = [];
+        $jam = [];
 
         foreach($daftar as $key => $value) {
             $arrays[] = $value->siswa_id;
+            $jam[] = $value->jam;
         }
 
         $data = [
             'title' => 'Absensi',
             'siswa' => Siswa::get(),
             'daftar_absen' => $arrays,
+            'jam' => $jam,
             'absensi' => Absensi::find($id),
         ];
         return view('backend.absen.edit' , $data);

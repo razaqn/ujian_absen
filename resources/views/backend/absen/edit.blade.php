@@ -28,6 +28,17 @@
             <div class="card">
                 <div class="card-header">Absensi</div>
                 <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <h5>Jadwal KBM : {{ $absensi->name }}</h5>
+                        </div>
+                        <div class="col-12">
+                            <h5>Hari/Tgl : {{ date('D,d M Y', strtotime($absensi->tanggal)) }}</h5>
+                        </div>
+                        <div class="col-12">
+                            <h5>Jam : {{ date('H:i:s', strtotime($absensi->tanggal)) }}</h5>
+                        </div>
+                    </div>
                     <form action="{{ route('backend.edit.process.absensi', $absensi->id) }}" method="post">
                         @csrf
                         <div class="table-responsive">
@@ -38,8 +49,9 @@
                                     <th>Hadir</th>
                                     <th>Jam</th>
                                 </thead>
-                                @foreach ($siswa as $key => $value)
                                 <tbody>
+                                @foreach ($siswa as $key => $value)
+                                <tr>
                                     <input type="hidden" name="siswa_id[]" value="{{ $value->id }}">
                                     <th>{{ ++$key }}</th>
                                     <td>{{ $value->name }}</td>
@@ -49,10 +61,11 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <input type="time" name="time[]">
+                                        <input type="time" name="time[]" value="{{ $jam }}">
                                     </td>
+                                </tr>
+                                    @endforeach
                                 </tbody>
-                                @endforeach
                             </table>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>

@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('absen_id')->default(0);
             $table->unsignedBigInteger('siswa_id')->default(0);
-            $table->boolean('hadir')->default(0);
-            $table->time('jam');
+            $table->string('jam')->nullable();
             $table->timestamps();
 
             $table->foreign('absen_id')
