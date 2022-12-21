@@ -26,7 +26,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Absensi</div>
+                <div class="card-header">Absensi
+                    <a href="{{ route('backend.create.absensi') }}" class="btn btn-sm btn-success">
+                        Create
+                    </a>
+                </div>
 
                 <div class="card-body">
                     <div class="table-responsive">

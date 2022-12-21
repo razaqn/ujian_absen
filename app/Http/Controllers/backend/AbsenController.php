@@ -6,7 +6,9 @@ use App\Models\Absensi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\DaftarAbsen;
+use App\Models\Mapel;
 use App\Models\Siswa;
+use Illuminate\Support\Facades\Auth;
 
 class AbsenController extends Controller
 {
@@ -18,6 +20,33 @@ class AbsenController extends Controller
         ];
 
         return view('backend.absen.index', $data);
+    }
+
+    public function create() {
+        $data = [
+            'siswa' => Siswa::get(),
+            'mapel' => Mapel::get()
+        ];
+        return view('backend.absen.create' , $data);
+    }
+
+    public function create_process(Request $request)
+    {
+        // Absensi::create([
+        //     'mapel_id' => $request->mapel,
+        //     'name' => $request->mapel . ' ('.Auth::user()->name.')',
+        //     'tanggal' => $request->tanggal,
+        // ]);
+
+        // foreach ($request->hadir as $key => $value) {
+        //     DaftarAbsen::create([
+        //         'siswa_id' => $value,
+        //         'jam' => $request->time[$key],
+        //     ]);
+        // }
+
+        // return redirect()->route('backend.manage.absensi')->with('success', 'Absen #'.' updated successfully');
+        print_r($request);
     }
 
     public function edit($id)
