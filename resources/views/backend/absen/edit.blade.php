@@ -61,7 +61,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <input type="time" name="time[]" value="{{ $jam }}">
+                                        <input type="time" name="time[]" @if(in_array($value->id, $daftar_absen)) ? value="{{ $jam[$value->id] }}" :  @endif>
+                                        {{-- value="{{ $jam[3] }}" --}}
                                     </td>
                                 </tr>
                                     @endforeach

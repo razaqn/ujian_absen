@@ -28,8 +28,9 @@ class AbsenController extends Controller
 
         foreach($daftar as $key => $value) {
             $arrays[] = $value->siswa_id;
-            $jam[] = $value->jam;
+            $jam[$value->siswa_id] = $value->jam;
         }
+
 
         $data = [
             'title' => 'Absensi',
@@ -39,6 +40,7 @@ class AbsenController extends Controller
             'absensi' => Absensi::find($id),
         ];
         return view('backend.absen.edit' , $data);
+
     }
 
     public function edit_process(Request $request, $id)
