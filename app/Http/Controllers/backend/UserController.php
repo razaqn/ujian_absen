@@ -71,10 +71,10 @@ class UserController extends Controller
     }
 
     public function destroy($id){
-        $item = ServicesCategories::find($id);
+        $item = User::find($id);
 
         $item->delete();
 
-        return redirect()->route('backend.manage.services.c')->with('success', 'Item deleted successfully');
+        return redirect()->route('backend.manage.user')->with('success', 'Item deleted successfully');
     }
 }

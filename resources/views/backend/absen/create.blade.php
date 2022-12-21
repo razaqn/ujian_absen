@@ -30,16 +30,22 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-12">
-                            <h5>Jadwal KBM : {{ $absensi->name }}</h5>
+                    <form action="{{ route('backend.create.process.absensi') }}" method="post">
+                            <h5>Jadwal KBM :
+                                <select name="mapel" id="">
+                                    @foreach ($mapel as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                            </h5>
                         </div>
                         <div class="col-12">
-                            <h5>Hari/Tgl : {{ date('D,d M Y', strtotime($absensi->tanggal)) }}</h5>
+                            <h5>Hari/Tgl : {{ date('D,d M Y') }}</h5>
                         </div>
                         <div class="col-12">
-                            <h5>Jam : {{ date('H:i:s', strtotime($absensi->tanggal)) }}</h5>
+                            <h5>Jam : <input type="datetime" name="tanggal" value="{{date('Y-m-d H:i:s')}}"></h5>
                         </div>
                     </div>
-                    <form action="{{ route('backend.edit.process.absensi', $absensi->id) }}" method="post">
                         @csrf
                         <div class="table-responsive">
                             <table class="table table-hover">
@@ -57,11 +63,11 @@
                                     <td>{{ $value->name }}</td>
                                     <td>
                                         <div class="form-check">
-                                            <input type="checkbox" name="hadir[]" value="{{ $value->id }}" @if(in_array($value->id, $daftar_absen)) ? checked :  @endif class="form-check-input">
+                                            <input type="checkbox" name="hadir[]" class="form-check-input">
                                         </div>
                                     </td>
                                     <td>
-                                        <input type="time" name="time[]" @if(in_array($value->id, $daftar_absen)) ? value="{{ $jam[$value->id] }}" :  @endif>
+                                        <input type="time" name="time[]" >
                                         {{-- value="{{ $jam[3] }}" --}}
                                     </td>
                                 </tr>

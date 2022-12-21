@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('absen_id')->default(0);
             $table->unsignedBigInteger('siswa_id')->default(0);
+<<<<<<< HEAD
             $table->time('jam')->nullable();
+=======
+            $table->string('jam')->nullable();
+>>>>>>> 8989bb88d18a0345e3e7e125ac926fe9a09dc0d9
             $table->timestamps();
 
             $table->foreign('absen_id')

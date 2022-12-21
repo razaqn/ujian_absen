@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('mapel_id')->default(0);
             $table->string('name');
-            $table->time('waktu_absen');
+            $table->timestamp('tanggal');
             $table->timestamps();
 
             $table->foreign('mapel_id')

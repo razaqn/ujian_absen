@@ -26,7 +26,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Absensi</div>
+                <div class="card-header">Absensi
+                    <a href="{{ route('backend.create.absensi') }}" class="btn btn-sm btn-success">
+                        Create
+                    </a>
+                </div>
 
                 <div class="card-body">
                     <div class="table-responsive">
@@ -34,6 +38,7 @@
                             <thead>
                                 <th>No</th>
                                 <th>Mata pelajaran</th>
+                                <th>Hari/Tgl</th>
                                 <th>Waktu</th>
                                 <th>Action</th>
                             </thead>
@@ -41,10 +46,13 @@
                             <tbody>
                                     <th>{{ ++$key }}</th>
                                     <td>{{ $value->name }}</td>
-                                    <td>{{ $value->waktu_absen }}</td>
+                                    <td>
+                                        {{ date('D,d M Y', strtotime($value->tanggal)) }}
+                                    </td>
+                                    <td>{{ date('H:i:s', strtotime($value->tanggal)) }}</td>
                                     <td>
                                         <a href="{{ route('backend.edit.absensi', $value->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt pe-1"></i> Edit</a>
-                                        <form action="" method="post" class="d-inline">
+                                        <form action="{{ route('backend.delete.absensi', $value->id) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-danger">

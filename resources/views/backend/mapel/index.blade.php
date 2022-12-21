@@ -51,8 +51,9 @@
                                 <th>Action</th>
                             </thead>
                             {{-- @foreach ($categories as $key => $value) --}}
+                            <tbody>
                             @foreach ($mapel as $mapel)
-                                <tbody>
+                                <tr>
                                     <td>{{ $mapel->id}}</td>
                                     <td>{{ $mapel->name}}</td>
                                     <td>{{ $mapel->slug}}</td>
@@ -67,8 +68,9 @@
                                             </button>
                                         </form>
                                     </td>
+                                </tr>
+                                    @endforeach
                                 </tbody>
-                            @endforeach
                           </table>
                     </div>
                 </div>
