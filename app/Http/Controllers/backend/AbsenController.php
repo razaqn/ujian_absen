@@ -47,18 +47,8 @@ class AbsenController extends Controller
     {
         DaftarAbsen::where('absen_id', $id)->delete();
 
-        // foreach(Siswa::get() as $key => $value){
-        //     DaftarAbsen::create([
-        //         'siswa_id' => $request->siswa_id[$key],
-        //         'absen_id' => $id,
-        //         'jam' => $request->time[$key],
-        //     ]);
-        // }
 
         foreach ($request->hadir as $key => $value) {
-            // echo "<pre>";
-            // print_r($value);
-            // echo "</pre>";
             DaftarAbsen::create([
                 'siswa_id' => $value,
                 'absen_id' => $id,
@@ -67,14 +57,12 @@ class AbsenController extends Controller
         }
 
         return redirect()->route('backend.manage.absensi')->with('success', 'Absen #'.$id.' updated successfully');
+    }
 
-        // for ($i = 0; $i < count($request->siswa_id); $i++) {
-        //     echo "<pre>";
-        //     print_r($request->siswa_id[$i]);
-        //     echo "</pre>";
-        //     echo "<pre>";
-        //     print_r($request->hadir[$i]);
-        //     echo "</pre>";
-        // }
+    public function delete($id) {
+        DaftarAbsen::where('absen_id', $id)->delete();
+        Absensi::where('id', $id)->delete();
+
+        return redirect()->route('backend.manage.absensi')->with('success', 'Absen #'.$id.' deleted successfully');
     }
 }

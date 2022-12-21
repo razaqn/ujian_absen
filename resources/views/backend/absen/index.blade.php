@@ -48,7 +48,7 @@
                                     <td>{{ date('H:i:s', strtotime($value->tanggal)) }}</td>
                                     <td>
                                         <a href="{{ route('backend.edit.absensi', $value->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt pe-1"></i> Edit</a>
-                                        <form action="" method="post" class="d-inline">
+                                        <form action="{{ route('backend.delete.absensi', $value->id) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-danger">

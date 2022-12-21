@@ -33,6 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/backend/manage/absen', [BackendAbsenController::class, 'index'])->name("backend.manage.absensi");
 Route::get('/backend/edit/absen/{id?}', [BackendAbsenController::class, 'edit'])->name("backend.edit.absensi");
 Route::post('/backend/edit_process/absen/{id?}', [BackendAbsenController::class, 'edit_process'])->name("backend.edit.process.absensi");
+Route::delete('/backend/delete/absen/{id?}', [BackendAbsenController::class, 'delete'])->name("backend.delete.absensi");
 
 Route::get('/backend/manage/siswa', [BackendSiswaController::class, 'index'])->name("backend.manage.siswa");
 Route::get('/backend/create/siswa', [BackendSiswaController::class, 'create'])->name("backend.create.siswa");
