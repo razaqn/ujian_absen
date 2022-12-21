@@ -75,11 +75,6 @@ class AbsenController extends Controller
     public function edit_process(Request $request, $id)
     {
         DaftarAbsen::where('absen_id', $id)->delete();
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 8989bb88d18a0345e3e7e125ac926fe9a09dc0d9
         foreach ($request->hadir as $key => $value) {
             DaftarAbsen::create([
                 'siswa_id' => $value,
@@ -89,8 +84,6 @@ class AbsenController extends Controller
         }
 
         return redirect()->route('backend.manage.absensi')->with('success', 'Absen #'.$id.' updated successfully');
-<<<<<<< HEAD
-=======
     }
 
     public function delete($id) {
@@ -98,6 +91,5 @@ class AbsenController extends Controller
         Absensi::where('id', $id)->delete();
 
         return redirect()->route('backend.manage.absensi')->with('success', 'Absen #'.$id.' deleted successfully');
->>>>>>> 8989bb88d18a0345e3e7e125ac926fe9a09dc0d9
     }
 }
