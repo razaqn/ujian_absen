@@ -15,7 +15,6 @@ class DaftarAbsen extends Model
     protected $fillable = [
         'absen_id',
         'siswa_id',
-        'hadir',
         'jam'
     ];
 
