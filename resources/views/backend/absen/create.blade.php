@@ -28,11 +28,12 @@
             <div class="card">
                 <div class="card-header">Absensi</div>
                 <div class="card-body">
+                    <form action="{{ route('backend.create.process.absensi') }}" method="post">
                     <div class="row mb-3">
                         <div class="col-12">
-                    <form action="{{ route('backend.create.process.absensi') }}" method="post">
+                        @csrf
                             <h5>Jadwal KBM :
-                                <select name="mapel" id="">
+                                <select name="mapel">
                                     @foreach ($mapel as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
@@ -40,13 +41,13 @@
                             </h5>
                         </div>
                         <div class="col-12">
-                            <h5>Hari/Tgl : {{ date('D,d M Y') }}</h5>
+                            <h5>Hari/Tgl : {{ date('l, d F Y') }}</h5>
                         </div>
                         <div class="col-12">
-                            <h5>Jam : <input type="datetime" name="tanggal" value="{{date('Y-m-d H:i:s')}}"></h5>
+                            <h5>Jam : <input type="datetime" name="tanggal" value="{{date('H:i:s')}}"></h5>
                         </div>
                     </div>
-                        @csrf
+
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -63,12 +64,11 @@
                                     <td>{{ $value->name }}</td>
                                     <td>
                                         <div class="form-check">
-                                            <input type="checkbox" name="hadir[]" class="form-check-input">
+                                            <input type="checkbox" name="hadir[]" value="{{ $value->id }}" class="form-check-input">
                                         </div>
                                     </td>
                                     <td>
                                         <input type="time" name="time[]" >
-                                        {{-- value="{{ $jam[3] }}" --}}
                                     </td>
                                 </tr>
                                     @endforeach

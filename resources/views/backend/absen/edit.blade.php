@@ -33,7 +33,7 @@
                             <h5>Jadwal KBM : {{ $absensi->name }}</h5>
                         </div>
                         <div class="col-12">
-                            <h5>Hari/Tgl : {{ date('D,d M Y', strtotime($absensi->tanggal)) }}</h5>
+                            <h5>Hari/Tgl : {{ date('l, d F Y', strtotime($absensi->tanggal)) }}</h5>
                         </div>
                         <div class="col-12">
                             <h5>Jam : {{ date('H:i:s', strtotime($absensi->tanggal)) }}</h5>

@@ -32,21 +32,23 @@ class AbsenController extends Controller
 
     public function create_process(Request $request)
     {
-        // Absensi::create([
-        //     'mapel_id' => $request->mapel,
-        //     'name' => $request->mapel . ' ('.Auth::user()->name.')',
-        //     'tanggal' => $request->tanggal,
-        // ]);
+        $mapel = Mapel::where('id', $request->mapel)->get('name');
 
-        // foreach ($request->hadir as $key => $value) {
-        //     DaftarAbsen::create([
-        //         'siswa_id' => $value,
-        //         'jam' => $request->time[$key],
-        //     ]);
-        // }
+        $id = Absensi::create([
+            'mapel_id' => $request->mapel,
+            'name' => $mapel[0]['name']. ' ('.Auth::user()->name.')',
+            'tanggal' => $request->tanggal,
+        ])->id;
 
-        // return redirect()->route('backend.manage.absensi')->with('success', 'Absen #'.' updated successfully');
-        print_r($request);
+        foreach ($request->hadir as $key => $value) {
+            DaftarAbsen::create([
+                'absen_id' => $id,
+                'siswa_id' => $value,
+                'jam' => $request->time[$value - 1],
+            ]);
+        }
+
+        return redirect()->route('backend.manage.absensi')->with('success', 'Absen created successfully');
     }
 
     public function edit($id)
@@ -79,8 +81,9 @@ class AbsenController extends Controller
             DaftarAbsen::create([
                 'siswa_id' => $value,
                 'absen_id' => $id,
-                'jam' => $request->time[$key],
+                'jam' => $request->time[$value - 1],
             ]);
+
         }
 
         return redirect()->route('backend.manage.absensi')->with('success', 'Absen #'.$id.' updated successfully');

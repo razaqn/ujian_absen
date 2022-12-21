@@ -47,7 +47,7 @@
                                     <th>{{ ++$key }}</th>
                                     <td>{{ $value->name }}</td>
                                     <td>
-                                        {{ date('D,d M Y', strtotime($value->tanggal)) }}
+                                        {{ date('l, d F Y', strtotime($value->tanggal)) }}
                                     </td>
                                     <td>{{ date('H:i:s', strtotime($value->tanggal)) }}</td>
                                     <td>
