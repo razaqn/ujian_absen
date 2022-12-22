@@ -16,6 +16,24 @@
         });
 
         $('select').select2();
+
+        setInterval(() => {
+            waktu();
+        }, 1000);
+
+        function waktu() {
+            var waktu = new Date();
+            var jam = waktu.getHours();
+            var menit = waktu.getMinutes();
+            var detik = waktu.getSeconds();
+
+            jam = jam < 10 ? '0' + jam : jam;
+            menit = menit < 10 ? '0' + menit : menit;
+            detik = detik < 10 ? '0' + detik : detik;
+
+            var hasil = jam + ':' + menit + ':' + detik;
+            $('#info_waktu').value(hasil);
+        }
     });
 </script>
 @endsection
