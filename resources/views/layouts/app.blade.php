@@ -96,6 +96,9 @@
                                     <a class="dropdown-item" href="{{ route('backend.manage.absensi') }}">
                                         Manage
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('backend.manage.reporting') }}">
+                                        Reporting
+                                    </a>
                                 </div>
                             </li>
 

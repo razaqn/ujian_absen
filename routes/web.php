@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\UserController as BackendUserController;
 use App\Http\Controllers\Backend\AbsenController as BackendAbsenController;
 use App\Http\Controllers\Backend\MapelController as BackendMapelController;
 use App\Http\Controllers\Backend\SiswaController as BackendSiswaController;
+use App\Http\Controllers\Backend\ReportController as BackendReportController;
 
 // user
 Route::get('/backend/manage/user', [BackendUserController::class, 'index'])->name("backend.manage.user");
@@ -43,3 +44,6 @@ Route::get('/backend/create/siswa', [BackendSiswaController::class, 'create'])->
 Route::post('/backend/create_process/siswa', [BackendSiswaController::class, 'create_process'])->name("backend.create.process.siswa");
 Route::get('/backend/edit/siswa/{id?}', [BackendSiswaController::class, 'edit'])->name("backend.edit.siswa");
 Route::post('/backend/edit_process/siswa', [BackendSiswaController::class, 'edit_process'])->name("backend.edit.process.siswa");
+
+Route::get('/backend/manage/reporting', [BackendReportController::class, 'index'])->name("backend.manage.reporting");
+Route::get('/backend/filter/reporting', [BackendReportController::class, 'filter'])->name("backend.filter.reporting");
