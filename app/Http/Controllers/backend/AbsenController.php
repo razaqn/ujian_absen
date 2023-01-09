@@ -40,12 +40,14 @@ class AbsenController extends Controller
             'tanggal' => $request->tanggal,
         ])->id;
 
-        foreach ($request->hadir as $key => $value) {
-            DaftarAbsen::create([
-                'absen_id' => $id,
-                'siswa_id' => $value,
-                'jam' => $request->time[$value - 1],
-            ]);
+        if($request->hadir) {
+            foreach ($request->hadir as $key => $value) {
+                DaftarAbsen::create([
+                    'absen_id' => $id,
+                    'siswa_id' => $value,
+                    'jam' => $request->time[$value - 1],
+                ]);
+            }
         }
 
         return redirect()->route('backend.manage.absensi')->with('success', 'Absen created successfully');
@@ -77,13 +79,15 @@ class AbsenController extends Controller
     public function edit_process(Request $request, $id)
     {
         DaftarAbsen::where('absen_id', $id)->delete();
-        foreach ($request->hadir as $key => $value) {
-            DaftarAbsen::create([
-                'siswa_id' => $value,
-                'absen_id' => $id,
-                'jam' => $request->time[$value - 1],
-            ]);
 
+        if($request->hadir) {
+            foreach ($request->hadir as $key => $value) {
+                DaftarAbsen::create([
+                    'siswa_id' => $value,
+                    'absen_id' => $id,
+                    'jam' => $request->time[$value - 1],
+                ]);
+            }
         }
 
         return redirect()->route('backend.manage.absensi')->with('success', 'Absen #'.$id.' updated successfully');
